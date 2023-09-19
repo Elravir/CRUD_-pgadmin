@@ -23,6 +23,9 @@ internal class Program {
                 Console.WriteLine("неверный ввод");
                 continue;
                 
+
+
+
             }
             else if (s=="1"){
                 Print(TABLE_NAME_1);
