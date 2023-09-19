@@ -1,64 +1,46 @@
-﻿using Npgsql;
+﻿using CRUD__pgadmin.Repositories;
+using Npgsql;
 using System.Runtime.InteropServices;
 
 namespace PostgresSqlClient;
 
 internal class Program {
+
+    const string ConnString = "Host=ep-winter-frog-92114323.us-east-2.aws.neon.tech;Username=kek.20;Password=QRIiynfvcx23;Database=neondb";
+
     private const string TABLE_NAME_1 = "book";
     private const string TABLE_NAME_2 = "publish";
     static private NpgsqlConnection connection;
     static void Main(string[] args) {
-        connection = new NpgsqlConnection("Host=ep-winter-frog-92114323.us-east-2.aws.neon.tech;Username=kek.20;Password=QRIiynfvcx23;Database=neondb");
+        connection = new NpgsqlConnection();
         connection.Open();
+
+        var BookRepo = new BookRepositories(ConnString);
 
         string s;
         while (true){
             Console.WriteLine("Выберите таблицу: 1.{0}, 2.{1}",TABLE_NAME_1 ,TABLE_NAME_2);
             s = Console.ReadLine();
             
-            Console.WriteLine("Выберите действие:\n1. добавить данные\n2. удалить данные\n3. изменить данные");
+            Console.WriteLine("Выберите действие:\n1. Показать список всех книг\n2. удалить книгу\n3. изменить данные книги");
             string action = Console.ReadLine();
 
-            if (s != "1" && s != "2") {
-                Console.WriteLine("неверный ввод");
-                continue;
-                
-
-
-
-            }
-            else if (s=="1"){
-                Print(TABLE_NAME_1);
-                
                 switch (action) {
                     case "1":
-                        insert_data(TABLE_NAME_1); 
+                        foreach(var item in BookRepo.GetAll()) {
+                        Console.WriteLine($"{item.Id_book} {item.Name_book} {item.Id_bublish} {item.Price}");
+                        } 
                         continue;
                     case "2":
-                        delete_data(TABLE_NAME_1);
+                        Console.WriteLine("Введите id книги для удаления");
+                        int value = Convert.ToInt32(Console.ReadLine());
+                        BookRepo.DeleteBook(value);
                         continue;
                     case "3":
                         update_data(TABLE_NAME_1);
                         continue;
                 }
 
-            }
-            else {
-                Print(TABLE_NAME_2);
-
-                switch (action) {
-                    case "1":
-                        insert_data(TABLE_NAME_2);
-                        continue;
-                    case "2":
-                        delete_data(TABLE_NAME_2);
-                        continue;
-                    case "3":
-                        update_data(TABLE_NAME_2);
-                        continue;
-                }
-
-            }
             
         }
 

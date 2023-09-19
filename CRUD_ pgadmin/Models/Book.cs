@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUD__pgadmin
+namespace CRUD__pgadmin.Models
 {
     internal class book
     {
@@ -12,6 +12,6 @@ namespace CRUD__pgadmin
         public string name_book { get; set; }
         public int id_bublish { get; set; }
         public int price { get; set; }
-        
+
     }
 }
