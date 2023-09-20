@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace CRUD__pgadmin.Models
 {
-    internal class book
+    internal class Book
     {
-        public int id { get; set; }
-        public string name_book { get; set; }
-        public int id_bublish { get; set; }
-        public int price { get; set; }
+        public int Id_book { get; set; }
+        
+        public string Name_book { get; set; }
+        
+        public int Id_publish { get; set; }
+        
+        public int Price { get; set; }
 
     }
 }
