@@ -12,12 +12,10 @@ namespace CRUD__pgadmin.Repositories
 {
     internal class BookRepositories: IBookRepositories
     {
-        private NpgsqlConnection connection;
+        
         string connString = null;
         public BookRepositories(string connectionString) {
             connString= connectionString;
-            //connection = new NpgsqlConnection(connectionString);
-            //connection.Open();
         }
 
         public IList<Book> GetAll() {
@@ -49,14 +47,6 @@ namespace CRUD__pgadmin.Repositories
 
             }
 
-            //using (var command = connection.CreateCommand()) {
-
-            //    command.Parameters.AddWithValue("@id_book", new_book.Id_book);
-            //    command.Parameters.AddWithValue("@name_book", new_book.Name_book);
-            //    command.Parameters.AddWithValue("@id_publish", new_book.Id_publish);
-            //    command.Parameters.AddWithValue("@price", new_book.Price);
-            //    command.ExecuteNonQuery();
-            //}
         }
 
         public void UpdateBook(Book new_book) {
@@ -67,16 +57,6 @@ namespace CRUD__pgadmin.Repositories
                 con.Execute(sql, new_book);
 
             }
-
-            //using (var command = connection.CreateCommand()) {
-
-            //    command.Parameters.AddWithValue("@id_book", new_book.Id_book);
-            //    command.Parameters.AddWithValue("@name_book", new_book.Name_book);
-            //    command.Parameters.AddWithValue("@id_publish", new_book.Id_publish);
-            //    command.Parameters.AddWithValue("@price", new_book.Price);
-
-            //    command.ExecuteNonQuery();
-            //}
 
         }
     }
