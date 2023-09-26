@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CRUD__pgadmin.Models
+namespace CRUD__pgadmin.Models;
+
+public partial class Book
 {
-    internal class Book
-    {
-        public int Id_book { get; set; }
-        
-        public string Name_book { get; set; }
-        
-        public int Id_publish { get; set; }
-        
-        public int Price { get; set; }
+    public int IdBook { get; set; }
 
-    }
+    public string? NameBook { get; set; }
+
+    public int? IdPublish { get; set; }
+
+    public int? Price { get; set; }
+
+    public virtual Publish? IdPublishNavigation { get; set; }
 }
